@@ -15,6 +15,9 @@
                   SelectedItem="{Binding SelectedStudent}"
                   AutoGenerateColumns="False"
                   Margin="0,0,0,10">
+            <DataGrid.Effect>
+                <DropShadowEffect/>
+            </DataGrid.Effect>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя"        Binding="{Binding Name}" />
                 <DataGridTextColumn Header="Специальн." Binding="{Binding Specialty}" />

@@ -82,7 +82,7 @@ namespace ViewModel
 
             AddStudentCommand = new RelayCommand(_ => AddStudent(), _ => CanAddOrEdit());
             RemoveStudentCommand = new RelayCommand(_ => RemoveStudent(), _ => SelectedStudent != null);
-            SaveStudentCommand = new RelayCommand(_ => SaveStudent(), _ => SelectedStudent != null && CanAddOrEdit());
+            SaveStudentCommand = new RelayCommand(_ => SaveStudent(), _ => SelectedStudent != null);
 
             foreach (var s in _studentBL.GetStudents())
                 Students.Add(s);
@@ -132,6 +132,13 @@ namespace ViewModel
                 Group = NewGroup
             };
             _studentBL.UpdateStudent(SelectedStudent, newStudent);
+            // очистка полей после сохранения
+            NewName = string.Empty;
+            NewSpecialty = string.Empty;
+            NewGroup = string.Empty;
+
+            // опционально: снять выделение
+            SelectedStudent = null;
         }
         private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
